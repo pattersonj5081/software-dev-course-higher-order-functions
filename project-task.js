@@ -91,3 +91,51 @@ Step-by-Step:
 // console.log("Uppercased names:", ...);
 // console.log("Discounted products:", ...);
 // console.log("Total value in stock:", ...);
+
+// Task 1: 
+//Step-by-Step:
+//1. Define the `filterProducts` function with appropriate parameters.
+//2. Use the `filter()` method to apply the callback to the array.
+//3. Return the filtered result.
+
+function filterInStockProducts(products, callback) {
+  return products.filter(callback);
+}
+
+// Task 2: 
+//Step-by-Step:
+//1. Use `map()` on the products array.
+//2. Extract and transform the `name` property to uppercase.
+//3. Store the result in a new variable.
+
+let upperCaseProducts = products.map(product => product.name.toUpperCase()); 
+
+// Task 3: 
+//1. Define a function `applyDiscount` that takes `discountPercent`.
+//2. Return a new function that takes a product object.
+//3. Use this returned function inside a `map()` call to apply discounts to all products.
+
+function applyDiscount (discountPercent){
+  return function(product){
+ return{
+  ...products, 
+  price: product.price - (product.price * discountPercent)
+  };
+ };
+}
+ let discountedItems = products.map(applyDiscount(0.1));
+  
+  
+// Task 4: array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+//Step-by-Step:
+//1. Use the `reduce()` method on the products array.
+//2. Add only the prices of products where `inStock` is true.
+//3. Store the total in a new variable.
+
+  let totalOfInStock = products.filter((item) => item.inStock).reduce((total, item) => total + item.price, 0); 
+
+ console.log("In-Stock Products:", filterInStockProducts(products, availability => availability.inStock === true));
+ console.log("Uppercased names:", upperCaseProducts);
+ console.log("Discounted products:",discountedItems );
+ console.log("Total value in stock:", totalOfInStock);
+
